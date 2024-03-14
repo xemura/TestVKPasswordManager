@@ -35,14 +35,13 @@ fun AddEditPasswordScreen(
 
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val imageState = viewModel.imageState.value
     val passwordState = viewModel.passwordState.value
     val loginState = viewModel.loginState.value
     val websiteState = viewModel.websiteState.value
 
     LaunchedEffect(key1 = true, block = {
         viewModel.uiEvents.collectLatest { event ->
-            when (event){
+            when (event) {
                 is AddEditViewModel.UIEvents.SavePassword -> {
                     navController.navigateUp()
                 }
@@ -61,22 +60,14 @@ fun AddEditPasswordScreen(
         }
     ) { contentPadding ->
 
-        Box(modifier = Modifier.fillMaxSize().padding(top = contentPadding.calculateTopPadding()),
-            contentAlignment = Alignment.Center) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = contentPadding.calculateTopPadding()),
+            contentAlignment = Alignment.Center
+        ) {
 
             Column {
-
-                CustomTextField(
-                    text = imageState.text,
-                    hint = imageState.hint,
-                    onTextChange = {
-                        viewModel.onEvent(AddEditPasswordEvent.EnteringImage(it))
-                    },
-                    leadingIcon = {
-                        Icon(imageVector = Icons.Filled.Place, contentDescription = "Service")
-                    })
-
-                Spacer(modifier = Modifier.padding(20.dp))
 
                 CustomTextField(
                     text = loginState.text,
@@ -87,7 +78,7 @@ fun AddEditPasswordScreen(
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Filled.Email,
-                            contentDescription = "UserName"
+                            contentDescription = "Login"
                         )
                     })
 
@@ -104,7 +95,8 @@ fun AddEditPasswordScreen(
                             imageVector = Icons.Filled.Lock,
                             contentDescription = "Password"
                         )
-                    })
+                    }
+                )
 
                 Spacer(modifier = Modifier.padding(20.dp))
 
@@ -116,7 +108,7 @@ fun AddEditPasswordScreen(
                         viewModel.onEvent(AddEditPasswordEvent.EnteringWebsite(it))
                     },
                     leadingIcon = {
-                        Icon(imageVector = Icons.Filled.Place, contentDescription = "Notes")
+                        Icon(imageVector = Icons.Filled.Place, contentDescription = "Website")
                     })
             }
         }

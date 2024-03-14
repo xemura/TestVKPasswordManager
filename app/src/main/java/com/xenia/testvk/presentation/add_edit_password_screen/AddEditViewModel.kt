@@ -74,7 +74,7 @@ class AddEditViewModel @Inject constructor(
                     if (pressedPasswordId == null) {
                         useCases.addPassword(
                             ItemModel(
-                                imageUrl = _imageState.value.text,
+                                imageUrl = "https://www.google.com/s2/favicons?domain=https://" + "${_websiteState.value.text}&sz=128",
                                 password = _passwordState.value.text,
                                 websiteUrl = _websiteState.value.text,
                                 login = _loginState.value.text
@@ -84,7 +84,7 @@ class AddEditViewModel @Inject constructor(
                         useCases.addPassword(
                             ItemModel(
                                 id = pressedPasswordId!!,
-                                imageUrl = _imageState.value.text,
+                                imageUrl = "https://www.google.com/s2/favicons?domain=https://" + "${_websiteState.value.text}&sz=128",
                                 password = _passwordState.value.text,
                                 websiteUrl = _websiteState.value.text,
                                 login = _loginState.value.text
@@ -94,12 +94,6 @@ class AddEditViewModel @Inject constructor(
 
                     _uiEvent.emit(UIEvents.SavePassword)
                 }
-            }
-
-            is AddEditPasswordEvent.EnteringImage -> {
-                _imageState.value = _imageState.value.copy(
-                    text = event.value
-                )
             }
 
             is AddEditPasswordEvent.EnteringPassword -> {

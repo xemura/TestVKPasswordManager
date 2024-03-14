@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -87,9 +88,11 @@ fun EnterScreen(
                     val newPassword = generateHash(otpValue, salt)
 
                     setMasterPassword(filesDir, newPassword)
+
+                    navController.navigate(Screens.MainScreen.route)
                 }
             },
-            shape = ButtonDefaults.outlinedShape,
+            shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = ButtonColor
             )

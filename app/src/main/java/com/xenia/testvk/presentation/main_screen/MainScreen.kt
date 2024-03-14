@@ -1,19 +1,22 @@
 package com.xenia.testvk.presentation.main_screen
 
+import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
@@ -39,14 +42,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.squareup.picasso.Picasso
-import com.xenia.testvk.domain.ItemModel
+import com.xenia.testvk.R
 import com.xenia.testvk.navigation.Screens
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -131,20 +136,4 @@ fun MainScreen(
             }
         }
     )
-}
-
-@Composable
-fun LoadImageFromUrl(url: String) {
-    var image by remember { mutableStateOf<Bitmap?>(null) }
-
-    LaunchedEffect(url) {
-        val bitmap = withContext(Dispatchers.IO) {
-            Picasso.get().load(url).get()
-        }
-        image = bitmap
-    }
-
-    image?.let {
-        Image(bitmap = it.asImageBitmap(), contentDescription = null, alignment = Alignment.Center)
-    }
 }
