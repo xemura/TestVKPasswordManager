@@ -4,11 +4,11 @@ import com.xenia.testvk.domain.ItemModel
 import com.xenia.testvk.domain.repository.PasswordRepository
 
 
-class AddNewPasswordUseCase(
+class GetPasswordByIdUseCase(
     private val passwordRepository: PasswordRepository
 ) {
-    suspend operator fun invoke(password: ItemModel){
-        if (password.password.isNotBlank() && password.login.isNotBlank())
-            passwordRepository.addPassword(password)
+
+    suspend operator fun invoke(id: Int): ItemModel {
+        return passwordRepository.getPasswordById(id)
     }
 }

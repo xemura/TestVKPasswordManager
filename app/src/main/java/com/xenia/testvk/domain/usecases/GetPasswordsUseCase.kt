@@ -2,13 +2,14 @@ package com.xenia.testvk.domain.usecases
 
 import com.xenia.testvk.domain.ItemModel
 import com.xenia.testvk.domain.repository.PasswordRepository
+import kotlinx.coroutines.flow.Flow
 
 
-class AddNewPasswordUseCase(
+class GetPasswordsUseCase(
     private val passwordRepository: PasswordRepository
 ) {
-    suspend operator fun invoke(password: ItemModel){
-        if (password.password.isNotBlank() && password.login.isNotBlank())
-            passwordRepository.addPassword(password)
+
+    operator fun invoke(): Flow<List<ItemModel>>? {
+        return passwordRepository.allPasswords()
     }
 }

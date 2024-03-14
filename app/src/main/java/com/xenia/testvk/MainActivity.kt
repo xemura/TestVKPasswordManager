@@ -8,11 +8,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.xenia.testvk.data.CryptoManager
 import com.xenia.testvk.navigation.NavGraph
-import com.xenia.testvk.presentation.enter_screen.EnterScreen
 import com.xenia.testvk.ui.theme.TestVKTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
