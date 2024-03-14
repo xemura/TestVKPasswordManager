@@ -55,11 +55,11 @@ fun MainScreen(
     viewModel: PasswordsViewModel = hiltViewModel()
 ) {
 
-    val data = mutableListOf(
-        ItemModel(0, "https://www.google.com/s2/favicons?domain=https://google.com&sz=128", "google.com", "testlogin@mail.ru", "testpassword123"),
-        ItemModel(1, "https://www.google.com/s2/favicons?domain=https://yandex.com&sz=128", "yandex.com", "test2login@mail.ru", "test2password123"),
-        ItemModel(2, "https://www.google.com/s2/favicons?domain=https://vk.com&sz=128", "vk.com", "test3login@mail.ru", "test3password123")
-    )
+//    val data = mutableListOf(
+//        ItemModel(0, "https://www.google.com/s2/favicons?domain=https://google.com&sz=128", "google.com", "testlogin@mail.ru", "testpassword123"),
+//        ItemModel(1, "https://www.google.com/s2/favicons?domain=https://yandex.com&sz=128", "yandex.com", "test2login@mail.ru", "test2password123"),
+//        ItemModel(2, "https://www.google.com/s2/favicons?domain=https://vk.com&sz=128", "vk.com", "test3login@mail.ru", "test3password123")
+//    )
 
     val snackbarHostState = remember { SnackbarHostState() }
 

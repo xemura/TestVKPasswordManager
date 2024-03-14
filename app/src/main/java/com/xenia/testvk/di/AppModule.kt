@@ -23,16 +23,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-//    @Provides
-//    @Singleton
-//    fun providesDatabase(app: Application): Database {
-//        return Room.databaseBuilder(
-//            app,
-//            Database::class.java,
-//            "PasswordDB"
-//        ).build()
-//    }
-
     @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext context: Context): Database =
@@ -41,7 +31,6 @@ object AppModule {
             .build()
 
     @Provides
-    @Singleton
     fun providesPasswordRepo(passwordDao: PasswordDao): PasswordRepository {
         return PasswordRepositoryImpl(passwordDao)
     }
