@@ -1,5 +1,6 @@
 package com.xenia.testvk.presentation.add_edit_password_screen
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
@@ -69,15 +70,28 @@ class AddEditViewModel @Inject constructor(
         when (event) {
             is AddEditPasswordEvent.SavePassword -> {
                 viewModelScope.launch {
-                    useCases.addPassword(
-                        ItemModel(
-                            id = pressedPasswordId!!,
-                            imageUrl = _imageState.value.text,
-                            password = _passwordState.value.text,
-                            websiteUrl = _websiteState.value.text,
-                            login = _loginState.value.text
+                    Log.d("TAG", pressedPasswordId.toString())
+                    if (pressedPasswordId == null) {
+                        useCases.addPassword(
+                            ItemModel(
+                                imageUrl = _imageState.value.text,
+                                password = _passwordState.value.text,
+                                websiteUrl = _websiteState.value.text,
+                                login = _loginState.value.text
+                            )
                         )
-                    )
+                    } else {
+                        useCases.addPassword(
+                            ItemModel(
+                                id = pressedPasswordId!!,
+                                imageUrl = _imageState.value.text,
+                                password = _passwordState.value.text,
+                                websiteUrl = _websiteState.value.text,
+                                login = _loginState.value.text
+                            )
+                        )
+                    }
+
                     _uiEvent.emit(UIEvents.SavePassword)
                 }
             }

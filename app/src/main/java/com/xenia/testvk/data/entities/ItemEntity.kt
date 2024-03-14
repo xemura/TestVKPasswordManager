@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "password")
 data class ItemEntity(
-    @PrimaryKey val id: Int = 0, // auto generated
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val imageUrl: String,
     val websiteUrl: String,
     val login: String,
