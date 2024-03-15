@@ -4,7 +4,7 @@ import com.xenia.testvk.data.entities.ItemEntity
 import com.xenia.testvk.domain.ItemModel
 
 
-class Mapper() {
+class PasswordMapper() {
     fun mapListEntityToListModel(items: List<ItemEntity>): List<ItemModel> {
         val list = mutableListOf<ItemModel>()
 

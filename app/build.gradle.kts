@@ -90,4 +90,6 @@ dependencies {
 
     // Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:2.6.1")
+
+    implementation("net.zetetic:android-database-sqlcipher:4.4.2")
 }

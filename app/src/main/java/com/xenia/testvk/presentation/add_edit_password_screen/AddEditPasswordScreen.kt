@@ -9,7 +9,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -33,7 +32,7 @@ fun AddEditPasswordScreen(
     viewModel: AddEditViewModel = hiltViewModel()
 ) {
 
-    val snackbarHostState = remember { SnackbarHostState() }
+    val snackBarHostState = remember { SnackbarHostState() }
 
     val passwordState = viewModel.passwordState.value
     val loginState = viewModel.loginState.value
@@ -50,7 +49,7 @@ fun AddEditPasswordScreen(
     })
 
     Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) },
+        snackbarHost = { SnackbarHost(snackBarHostState) },
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 viewModel.onEvent(AddEditPasswordEvent.SavePassword)
