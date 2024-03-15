@@ -6,6 +6,7 @@ import com.xenia.testvk.data.data_source.CryptoClass
 import com.xenia.testvk.data.data_source.Database
 import com.xenia.testvk.data.data_source.PasswordDao
 import com.xenia.testvk.data.mapper.PasswordMapper
+import com.xenia.testvk.data.repository.PassphraseRepository
 import com.xenia.testvk.data.repository.PasswordRepositoryImpl
 import com.xenia.testvk.domain.repository.PasswordRepository
 import com.xenia.testvk.domain.usecases.passwords_usecases.AddNewPasswordUseCase
@@ -24,17 +25,19 @@ import dagger.hilt.components.SingletonComponent
 import net.sqlcipher.database.SupportFactory
 import javax.inject.Singleton
 
-private const val PASSPHRASE = "sekr1t"
-
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
     @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext context: Context): Database =
+    fun provideAppDatabase(
+        @ApplicationContext context: Context,
+        passphraseRepository: PassphraseRepository
+    ): Database =
         Room.databaseBuilder(context, Database::class.java, "PasswordDB")
-            .fallbackToDestructiveMigration() // ?
+            .openHelperFactory(SupportFactory(passphraseRepository.getPassphrase()))
+            .fallbackToDestructiveMigration()
             .build()
 
     @Provides
@@ -48,6 +51,11 @@ object AppModule {
             mapper,
             cryptoClass
         )
+    }
+
+    @Provides
+    fun providesPassphraseRepo(@ApplicationContext context: Context): PassphraseRepository {
+        return PassphraseRepository(context)
     }
 
     @Provides

@@ -92,4 +92,6 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.1")
 
     implementation("net.zetetic:android-database-sqlcipher:4.4.2")
+    implementation("androidx.security:security-crypto:1.0.0")
+
 }
